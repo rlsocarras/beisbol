@@ -163,38 +163,90 @@
                             </div>
                             <div class="card-body">
                                 <p class="card-text">En caso de empate en las posiciones, se aplicarán los siguientes criterios de desempate en orden:</p>
-                                <ol class="list-group list-group-numbered">
-                                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                                        <div class="ms-2 me-auto">
-                                            <div class="fw-bold">Head-to-Head</div>
-                                            Resultado de los partidos directos entre los equipos empatados
+                                
+                                <div class="accordion" id="accordionTiebreakers">
+                                    <!-- Head-to-Head -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                                                <span class="badge bg-danger me-2">1</span>
+                                                <strong>Head-to-Head (Enfrentamiento directo)</strong>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionTiebreakers">
+                                            <div class="accordion-body">
+                                                <p><strong>¿Qué significa?</strong> Se mira quién ganó la serie o los partidos que jugaron entre ellos durante la temporada.</p>
+                                                <p><strong>¿Cómo funciona?</strong> Si el Equipo A y el Equipo B están empatados, y durante la temporada jugaron 3 partidos y el Equipo A ganó 2 y el Equipo B ganó 1, el Equipo A gana el desempate.</p>
+                                                <p class="text-muted mb-0"><small><em>Nota: Este criterio solo funciona si los equipos empatados jugaron la misma cantidad de partidos entre sí. Si son 3 equipos, a veces se mira el porcentaje de victorias en los partidos jugados entre esos 3.</em></small></p>
+                                            </div>
                                         </div>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                                        <div class="ms-2 me-auto">
-                                            <div class="fw-bold">Record vs. Mismos Oponentes</div>
-                                            Mejor récord contra los rivales comunes
+                                    </div>
+                                    
+                                    <!-- Record vs Mismos Oponentes -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                                <span class="badge bg-danger me-2">2</span>
+                                                <strong>Record vs. Mismos Oponentes (Récord contra rivales comunes)</strong>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionTiebreakers">
+                                            <div class="accordion-body">
+                                                <p><strong>¿Qué significa?</strong> Se compara cómo le fue a cada equipo contra los mismos rivales a lo largo de la temporada.</p>
+                                                <p><strong>¿Cómo funciona?</strong> Se toma la lista de oponentes que ambos equipos enfrentaron (por ejemplo, ambos jugaron contra los equipos X, Y y Z) y se suma el récord de cada uno contra esos rivales. El que tenga mejor récord global contra esos rivales comunes gana el desempate.</p>
+                                                <p class="text-muted mb-0"><small><em>¿Cuándo se usa? Cuando el criterio de enfrentamientos directos no aplica (porque empataron en los partidos entre ellos) o para deshacer un triple empate donde el "head-to-head" está muy enredado.</em></small></p>
+                                            </div>
                                         </div>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                                        <div class="ms-2 me-auto">
-                                            <div class="fw-bold">Run Difference</div>
-                                            Diferencia de carreras (carreras a favor menos carreras en contra)
+                                    </div>
+                                    
+                                    <!-- Run Difference -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                                                <span class="badge bg-danger me-2">3</span>
+                                                <strong>Run Difference (Diferencia de carreras)</strong>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionTiebreakers">
+                                            <div class="accordion-body">
+                                                <p><strong>¿Qué significa?</strong> También conocido como "Run Differential". Es una simple resta: Carreras Anotadas - Carreras Recibidas.</p>
+                                                <p class="mb-0"><strong>¿Cómo funciona?</strong> El equipo que tenga el número más alto (menos negativo) gana. La lógica detrás de esto es que si un equipo anota muchas más carreras de las que recibe, significa que ha sido más dominante a lo largo de la temporada, aunque haya perdido algunos partidos cerrados.</p>
+                                            </div>
                                         </div>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                                        <div class="ms-2 me-auto">
-                                            <div class="fw-bold">Carreras Anotadas</div>
-                                            Mayor número de carreras anotadas en la temporada
+                                    </div>
+                                    
+                                    <!-- Carreras Anotadas -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour">
+                                                <span class="badge bg-danger me-2">4</span>
+                                                <strong>Carreras Anotadas (Mayor número de carreras anotadas)</strong>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionTiebreakers">
+                                            <div class="accordion-body">
+                                                <p><strong>¿Qué significa?</strong> Si la diferencia de carreras es la misma (o no se quiere usar ese criterio), se pasa a ver el poder ofensivo bruto.</p>
+                                                <p class="mb-0"><strong>¿Cómo funciona?</strong> Simplemente se cuentan todas las carreras que cada equipo <strong>anotó</strong> en la temporada. El que tenga más, gana. Esto premia a la ofensiva más productiva.</p>
+                                            </div>
                                         </div>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                                        <div class="ms-2 me-auto">
-                                            <div class="fw-bold">Sorteo</div>
-                                            Si persiste el empate, se realizará un sorteo aleatorio
+                                    </div>
+                                    
+                                    <!-- Sorteo -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive">
+                                                <span class="badge bg-danger me-2">5</span>
+                                                <strong>Sorteo (Aleatorio)</strong>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionTiebreakers">
+                                            <div class="accordion-body">
+                                                <p><strong>¿Qué significa?</strong> Si después de aplicar todos los criterios deportivos anteriores (enfrentamientos directos, rivales comunes, diferencia de carreras y carreras anotadas) los equipos siguen matemáticamente empatados, ya no hay forma de separarlos con números.</p>
+                                                <p class="mb-0"><strong>¿Cómo funciona?</strong> Se recurre a la suerte. Puede ser un sorteo, lanzar una moneda al aire, o algún otro método aleatorio para decidir la posición final.</p>
+                                            </div>
                                         </div>
-                                    </li>
-                                </ol>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
